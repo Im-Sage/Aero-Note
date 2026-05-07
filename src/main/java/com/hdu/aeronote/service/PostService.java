@@ -1,6 +1,6 @@
 package com.hdu.aeronote.service;
 
-import com.hdu.aeronote.dto.PostPublishDTO;
+import com.hdu.aeronote.entity.dto.PostPublishDTO;
 
 public interface PostService {
     /**

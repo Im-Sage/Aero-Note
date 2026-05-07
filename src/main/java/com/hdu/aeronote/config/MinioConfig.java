@@ -35,7 +35,7 @@ public class MinioConfig {
 
         // 如果桶不存在，创建一个新的桶
         if (!exits) {
-            minioClient().makeBucket(
+            minioClient.makeBucket(
                     io.minio.MakeBucketArgs.builder().bucket(bucketName).build()
             );
             System.out.printf("Bucket is not exist. Created bucket: %s\n", bucketName);

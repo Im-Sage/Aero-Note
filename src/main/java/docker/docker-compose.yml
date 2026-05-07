@@ -36,3 +36,29 @@ services:
       # 这样哪怕容器被删了，文件依然安全躺在你服务器的硬盘里！
       - ./data:/data
     command: server /data --console-address ":9001"
+
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: my-rabbitmq
+    ports:
+      - "5672:5672"   # 给 Java 代码通讯用的 TCP 端口
+      - "15672:15672" # 给浏览器看的网页控制台端口
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: password123
+
+  redis:
+    image: redis:latest
+    container_name: my-redis
+    ports:
+      - "6379:6379" # Redis 默认连接端口
+    environment:
+      # 可选：设置时区（解决时间不一致问题）
+      TZ: Asia/Shanghai
+    volumes:
+      # 数据持久化：容器删除后数据不丢失
+      - ./redis-data:/data
+      # 可选：挂载自定义配置文件（新手可先不用）
+      # - ./redis.conf:/usr/local/etc/redis/redis.conf
+    # 核心配置：开启数据持久化 + 设置密码
+    command: redis-server --appendonly yes --requirepass password123

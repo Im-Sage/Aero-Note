@@ -1,4 +1,4 @@
-package com.hdu.aeronote.dto;
+package com.hdu.aeronote.entity.dto;
 
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
