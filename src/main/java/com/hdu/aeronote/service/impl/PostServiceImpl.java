@@ -91,7 +91,7 @@ public class PostServiceImpl implements PostService {
             // 普通用户的笔记，发送到普通路由，后续可以有消费者来处理普通用户的笔记（比如正常推送给粉丝）
             rabbitTemplate.convertAndSend(RabbitMqConfig.FEED_EXCHANGE, RabbitMqConfig.ROUTE_NORMAL, message);
         }
-
+        rabbitTemplate.convertAndSend(RabbitMqConfig.FEED_EXCHANGE, "route.ai", message);
         return postId;
     }
 

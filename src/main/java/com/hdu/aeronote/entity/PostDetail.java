@@ -4,6 +4,7 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -21,4 +22,8 @@ public class PostDetail {
 
     private String richContent;
     private Map<String, Object> exifInfo; // 灵活的 JSON，照单全收
+
+    List<String> tags;    // 提取3-5个核心标签
+    String summary;    // 50字以内的摘要
+    String sentiment;         // 情感倾向 (如：积极、消极、治愈、震撼)
 }
